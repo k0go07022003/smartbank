@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.models API documentation</title>
+<meta name="description" content="Domain operations — mirrors the UML class diagram …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.models</code></h1>
+</header>
+<section id="section-intro">
+<p>Domain operations — mirrors the UML class diagram.</p>
+<p>The class diagram had User / Customer / Administrator, BankAccount,
+Transaction (+ Deposit/Withdraw/Transfer subclasses), Notification,
+NotificationManager. This module exposes those behaviors as functions
+over the sqlite3 connection; keeping it procedural avoids an ORM layer
+for a coursework project while still honoring the design.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.models.all_transactions"><code class="name flex">
+<span>def <span class="ident">all_transactions</span></span>(<span>db, limit=100)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def all_transactions(db, limit=100):
+    rows = db.execute(&#34;SELECT * FROM transactions ORDER BY date DESC LIMIT ?&#34;,
+                      (limit,)).fetchall()
+    return [dict(r) for r in rows]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.authenticate"><code class="name flex">
+<span>def <span class="ident">authenticate</span></span>(<span>db, username, password)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def authenticate(db, username, password):
+    &#34;&#34;&#34;Verify credentials for **FR-02 User Authentication**.
+
+    :raises AuthError: on unknown user, wrong password, or blocked user.
+    :returns: the user row as a ``dict``.
+    &#34;&#34;&#34;
+    row = db.execute(&#34;SELECT * FROM users WHERE username=?&#34;, (username,)).fetchone()
+    if row is None or not check_password_hash(row[&#34;password_hash&#34;], password):
+        raise AuthError(&#34;Invalid credentials&#34;)
+    if row[&#34;status&#34;] == &#34;blocked&#34;:
+        raise AuthError(&#34;Account is blocked&#34;)
+    return dict(row)</code></pre>
+</details>
+<div class="desc"><p>Verify credentials for <strong>FR-02 User Authentication</strong>.</p>
+<p>:raises AuthError: on unknown user, wrong password, or blocked user.
+:returns: the user row as a <code>dict</code>.</p></div>
+</dd>
+<dt id="app.models.deposit"><code class="name flex">
+<span>def <span class="ident">deposit</span></span>(<span>db, account_number, amount, description='Deposit')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deposit(db, account_number, amount, description=&#34;Deposit&#34;):
+    &#34;&#34;&#34;Credit ``amount`` to ``account_number`` (**FR-06** deposit path).
+
+    Follows the same *validate → mutate → log → notify → commit*
+    template as :func:`withdraw` and :func:`transfer` (Template Method).
+
+    :raises DomainError: if ``amount`` is non-positive, the account is
+        missing, or the account is not active.
+    &#34;&#34;&#34;
+    if amount &lt;= 0:
+        raise DomainError(&#34;Amount must be positive&#34;)
+    acc = get_account(db, account_number)
+    if acc is None:
+        raise DomainError(&#34;Account not found&#34;)
+    if acc[&#34;status&#34;] != &#34;active&#34;:
+        raise DomainError(&#34;Account is not active&#34;)
+    db.execute(&#34;UPDATE accounts SET balance = balance + ? WHERE account_number=?&#34;,
+               (amount, account_number))
+    tx_id = _log_tx(db, &#34;deposit&#34;, amount, description, dest=account_number)
+    _notify(db, acc[&#34;user_id&#34;], &#34;deposit&#34;,
+            f&#34;Deposit of {amount:.2f} {acc[&#39;currency&#39;]} completed.&#34;)
+    db.commit()
+    return tx_id</code></pre>
+</details>
+<div class="desc"><p>Credit <code>amount</code> to <code>account_number</code> (<strong>FR-06</strong> deposit path).</p>
+<p>Follows the same <em>validate → mutate → log → notify → commit</em>
+template as :func:<code><a title="app.models.withdraw" href="#app.models.withdraw">withdraw()</a></code> and :func:<code><a title="app.models.transfer" href="#app.models.transfer">transfer()</a></code> (Template Method).</p>
+<p>:raises DomainError: if <code>amount</code> is non-positive, the account is
+missing, or the account is not active.</p></div>
+</dd>
+<dt id="app.models.generate_password_hash"><code class="name flex">
+<span>def <span class="ident">generate_password_hash</span></span>(<span>password)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_password_hash(password):
+    # pbkdf2 is available on all Python builds; scrypt is not on stock macOS 3.9
+    return _gph(password, method=&#34;pbkdf2:sha256&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.get_account"><code class="name flex">
+<span>def <span class="ident">get_account</span></span>(<span>db, account_number)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_account(db, account_number):
+    row = db.execute(&#34;SELECT * FROM accounts WHERE account_number=?&#34;,
+                     (account_number,)).fetchone()
+    return dict(row) if row else None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.get_accounts"><code class="name flex">
+<span>def <span class="ident">get_accounts</span></span>(<span>db, user_id)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_accounts(db, user_id):
+    rows = db.execute(&#34;SELECT * FROM accounts WHERE user_id=?&#34;, (user_id,)).fetchall()
+    return [dict(r) for r in rows]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.get_notifications"><code class="name flex">
+<span>def <span class="ident">get_notifications</span></span>(<span>db, user_id, limit=20)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_notifications(db, user_id, limit=20):
+    &#34;&#34;&#34;Return the most recent notifications for a user (**FR-08**).&#34;&#34;&#34;
+    rows = db.execute(
+        &#34;SELECT * FROM notifications WHERE user_id=? ORDER BY timestamp DESC LIMIT ?&#34;,
+        (user_id, limit),
+    ).fetchall()
+    return [dict(r) for r in rows]</code></pre>
+</details>
+<div class="desc"><p>Return the most recent notifications for a user (<strong>FR-08</strong>).</p></div>
+</dd>
+<dt id="app.models.get_user"><code class="name flex">
+<span>def <span class="ident">get_user</span></span>(<span>db, user_id)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_user(db, user_id):
+    row = db.execute(&#34;SELECT * FROM users WHERE user_id=?&#34;, (user_id,)).fetchone()
+    return dict(row) if row else None</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.list_users"><code class="name flex">
+<span>def <span class="ident">list_users</span></span>(<span>db)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def list_users(db):
+    rows = db.execute(&#34;SELECT user_id, username, email, role, status FROM users &#34;
+                      &#34;ORDER BY user_id&#34;).fetchall()
+    return [dict(r) for r in rows]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.open_account"><code class="name flex">
+<span>def <span class="ident">open_account</span></span>(<span>db, user_id, currency='PLN', account_type='checking')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def open_account(db, user_id, currency=&#34;PLN&#34;, account_type=&#34;checking&#34;):
+    &#34;&#34;&#34;Open a new zero-balance bank account for ``user_id``.&#34;&#34;&#34;
+    number = _generate_account_number()
+    db.execute(
+        &#34;INSERT INTO accounts (account_number, user_id, balance, currency, account_type) &#34;
+        &#34;VALUES (?, ?, 0, ?, ?)&#34;,
+        (number, user_id, currency, account_type),
+    )
+    db.commit()
+    return number</code></pre>
+</details>
+<div class="desc"><p>Open a new zero-balance bank account for <code>user_id</code>.</p></div>
+</dd>
+<dt id="app.models.register_user"><code class="name flex">
+<span>def <span class="ident">register_user</span></span>(<span>db, username, email, password, full_name=None, role='customer')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_user(db, username, email, password, full_name=None, role=&#34;customer&#34;):
+    &#34;&#34;&#34;Create a new user and (for customers) an initial bank account.
+
+    Implements **FR-01 User Registration**.
+
+    :raises DomainError: if the password is too short, the email is
+        malformed, or the username/email is already taken.
+    :returns: the freshly created ``user_id``.
+    &#34;&#34;&#34;
+    if len(password) &lt; 6:
+        raise DomainError(&#34;Password must be at least 6 characters&#34;)
+    if &#34;@&#34; not in email:
+        raise DomainError(&#34;Invalid email&#34;)
+    try:
+        cur = db.execute(
+            &#34;INSERT INTO users (username, password_hash, email, role, full_name) &#34;
+            &#34;VALUES (?, ?, ?, ?, ?)&#34;,
+            (username, generate_password_hash(password), email, role, full_name),
+        )
+        user_id = cur.lastrowid
+        # Open a default account for customers
+        if role == &#34;customer&#34;:
+            open_account(db, user_id)
+        db.commit()
+        return user_id
+    except Exception as e:
+        db.rollback()
+        if &#34;UNIQUE&#34; in str(e):
+            raise DomainError(&#34;Username or email already taken&#34;) from e
+        raise</code></pre>
+</details>
+<div class="desc"><p>Create a new user and (for customers) an initial bank account.</p>
+<p>Implements <strong>FR-01 User Registration</strong>.</p>
+<p>:raises DomainError: if the password is too short, the email is
+malformed, or the username/email is already taken.
+:returns: the freshly created <code>user_id</code>.</p></div>
+</dd>
+<dt id="app.models.set_account_status"><code class="name flex">
+<span>def <span class="ident">set_account_status</span></span>(<span>db, account_number, status)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_account_status(db, account_number, status):
+    db.execute(&#34;UPDATE accounts SET status=? WHERE account_number=?&#34;,
+               (status, account_number))
+    db.commit()</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.models.set_user_status"><code class="name flex">
+<span>def <span class="ident">set_user_status</span></span>(<span>db, admin_id, user_id, status)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_user_status(db, admin_id, user_id, status):
+    &#34;&#34;&#34;Admin action: activate or block a user (**FR-10**).
+
+    The new status cascades to all of the user&#39;s accounts and the
+    operation is appended to ``audit_log``.
+    &#34;&#34;&#34;
+    if status not in (&#34;active&#34;, &#34;blocked&#34;):
+        raise DomainError(&#34;Invalid status&#34;)
+    db.execute(&#34;UPDATE users SET status=? WHERE user_id=?&#34;, (status, user_id))
+    # cascade to their accounts
+    db.execute(&#34;UPDATE accounts SET status=? WHERE user_id=?&#34;, (status, user_id))
+    db.execute(&#34;INSERT INTO audit_log (admin_id, action, target) VALUES (?, ?, ?)&#34;,
+               (admin_id, f&#34;set_status:{status}&#34;, str(user_id)))
+    db.commit()</code></pre>
+</details>
+<div class="desc"><p>Admin action: activate or block a user (<strong>FR-10</strong>).</p>
+<p>The new status cascades to all of the user's accounts and the
+operation is appended to <code>audit_log</code>.</p></div>
+</dd>
+<dt id="app.models.transaction_history"><code class="name flex">
+<span>def <span class="ident">transaction_history</span></span>(<span>db, account_number)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transaction_history(db, account_number):
+    &#34;&#34;&#34;Return all transactions touching ``account_number`` (**FR-04**).
+
+    Sorted newest first, includes rows where the account is either the
+    source or the destination.
+    &#34;&#34;&#34;
+    rows = db.execute(
+        &#34;SELECT * FROM transactions &#34;
+        &#34;WHERE source_account=? OR dest_account=? &#34;
+        &#34;ORDER BY date DESC&#34;,
+        (account_number, account_number),
+    ).fetchall()
+    return [dict(r) for r in rows]</code></pre>
+</details>
+<div class="desc"><p>Return all transactions touching <code>account_number</code> (<strong>FR-04</strong>).</p>
+<p>Sorted newest first, includes rows where the account is either the
+source or the destination.</p></div>
+</dd>
+<dt id="app.models.transfer"><code class="name flex">
+<span>def <span class="ident">transfer</span></span>(<span>db, source_number, dest_number, amount, description='')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def transfer(db, source_number, dest_number, amount, description=&#34;&#34;):
+    &#34;&#34;&#34;Move ``amount`` between two accounts (**FR-05 Money Transfer**).
+
+    Both the debit and the credit happen inside the same SQLite
+    transaction and are committed together; any validation failure
+    aborts before the first UPDATE runs. Two notifications are emitted:
+    one *transfer_out* for the sender and one *transfer_in* for the
+    recipient (Observer pattern).
+
+    :raises DomainError: on non-positive amount, same source/destination,
+        missing account, inactive account, or insufficient funds.
+    &#34;&#34;&#34;
+    if amount &lt;= 0:
+        raise DomainError(&#34;Amount must be positive&#34;)
+    if source_number == dest_number:
+        raise DomainError(&#34;Source and destination must differ&#34;)
+    src = get_account(db, source_number)
+    dst = get_account(db, dest_number)
+    if src is None:
+        raise DomainError(&#34;Source account not found&#34;)
+    if dst is None:
+        raise DomainError(&#34;Recipient account not found&#34;)
+    if src[&#34;status&#34;] != &#34;active&#34; or dst[&#34;status&#34;] != &#34;active&#34;:
+        raise DomainError(&#34;One of the accounts is not active&#34;)
+    if src[&#34;balance&#34;] &lt; amount:
+        raise DomainError(&#34;Insufficient funds&#34;)
+    db.execute(&#34;UPDATE accounts SET balance = balance - ? WHERE account_number=?&#34;,
+               (amount, source_number))
+    db.execute(&#34;UPDATE accounts SET balance = balance + ? WHERE account_number=?&#34;,
+               (amount, dest_number))
+    tx_id = _log_tx(db, &#34;transfer&#34;, amount, description,
+                    source=source_number, dest=dest_number)
+    _notify(db, src[&#34;user_id&#34;], &#34;transfer_out&#34;,
+            f&#34;Sent {amount:.2f} {src[&#39;currency&#39;]} to {dest_number}&#34;)
+    _notify(db, dst[&#34;user_id&#34;], &#34;transfer_in&#34;,
+            f&#34;Received {amount:.2f} {dst[&#39;currency&#39;]} from {source_number}&#34;)
+    db.commit()
+    return tx_id</code></pre>
+</details>
+<div class="desc"><p>Move <code>amount</code> between two accounts (<strong>FR-05 Money Transfer</strong>).</p>
+<p>Both the debit and the credit happen inside the same SQLite
+transaction and are committed together; any validation failure
+aborts before the first UPDATE runs. Two notifications are emitted:
+one <em>transfer_out</em> for the sender and one <em>transfer_in</em> for the
+recipient (Observer pattern).</p>
+<p>:raises DomainError: on non-positive amount, same source/destination,
+missing account, inactive account, or insufficient funds.</p></div>
+</dd>
+<dt id="app.models.update_profile"><code class="name flex">
+<span>def <span class="ident">update_profile</span></span>(<span>db, user_id, full_name=None, address=None, phone=None, email=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_profile(db, user_id, full_name=None, address=None, phone=None, email=None):
+    &#34;&#34;&#34;Update mutable fields on a user&#39;s profile (**FR-07**).
+
+    Any argument left as ``None`` is ignored, so the same function can
+    be used to patch a single field or several at once.
+    &#34;&#34;&#34;
+    fields, values = [], []
+    for col, val in [(&#34;full_name&#34;, full_name), (&#34;address&#34;, address),
+                     (&#34;phone&#34;, phone), (&#34;email&#34;, email)]:
+        if val is not None:
+            fields.append(f&#34;{col}=?&#34;)
+            values.append(val)
+    if not fields:
+        return
+    values.append(user_id)
+    db.execute(f&#34;UPDATE users SET {&#39;, &#39;.join(fields)} WHERE user_id=?&#34;, values)
+    db.commit()</code></pre>
+</details>
+<div class="desc"><p>Update mutable fields on a user's profile (<strong>FR-07</strong>).</p>
+<p>Any argument left as <code>None</code> is ignored, so the same function can
+be used to patch a single field or several at once.</p></div>
+</dd>
+<dt id="app.models.withdraw"><code class="name flex">
+<span>def <span class="ident">withdraw</span></span>(<span>db, account_number, amount, description='Withdraw')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def withdraw(db, account_number, amount, description=&#34;Withdraw&#34;):
+    &#34;&#34;&#34;Debit ``amount`` from ``account_number`` (**FR-06** withdraw path).
+
+    :raises DomainError: on non-positive amount, missing or inactive
+        account, or insufficient funds.
+    &#34;&#34;&#34;
+    if amount &lt;= 0:
+        raise DomainError(&#34;Amount must be positive&#34;)
+    acc = get_account(db, account_number)
+    if acc is None:
+        raise DomainError(&#34;Account not found&#34;)
+    if acc[&#34;status&#34;] != &#34;active&#34;:
+        raise DomainError(&#34;Account is not active&#34;)
+    if acc[&#34;balance&#34;] &lt; amount:
+        raise DomainError(&#34;Insufficient funds&#34;)
+    db.execute(&#34;UPDATE accounts SET balance = balance - ? WHERE account_number=?&#34;,
+               (amount, account_number))
+    tx_id = _log_tx(db, &#34;withdraw&#34;, amount, description, source=account_number)
+    _notify(db, acc[&#34;user_id&#34;], &#34;withdraw&#34;,
+            f&#34;Withdrawal of {amount:.2f} {acc[&#39;currency&#39;]} completed.&#34;)
+    db.commit()
+    return tx_id</code></pre>
+</details>
+<div class="desc"><p>Debit <code>amount</code> from <code>account_number</code> (<strong>FR-06</strong> withdraw path).</p>
+<p>:raises DomainError: on non-positive amount, missing or inactive
+account, or insufficient funds.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="app.models.AuthError"><code class="flex name class">
+<span>class <span class="ident">AuthError</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AuthError(Exception):
+    &#34;&#34;&#34;Raised when authentication fails (bad credentials, blocked user).&#34;&#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Raised when authentication fails (bad credentials, blocked user).</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="app.models.DomainError"><code class="flex name class">
+<span>class <span class="ident">DomainError</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DomainError(Exception):
+    &#34;&#34;&#34;Raised when a business rule is violated (e.g. insufficient funds).&#34;&#34;&#34;</code></pre>
+</details>
+<div class="desc"><p>Raised when a business rule is violated (e.g. insufficient funds).</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app" href="index.html">app</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="app.models.all_transactions" href="#app.models.all_transactions">all_transactions</a></code></li>
+<li><code><a title="app.models.authenticate" href="#app.models.authenticate">authenticate</a></code></li>
+<li><code><a title="app.models.deposit" href="#app.models.deposit">deposit</a></code></li>
+<li><code><a title="app.models.generate_password_hash" href="#app.models.generate_password_hash">generate_password_hash</a></code></li>
+<li><code><a title="app.models.get_account" href="#app.models.get_account">get_account</a></code></li>
+<li><code><a title="app.models.get_accounts" href="#app.models.get_accounts">get_accounts</a></code></li>
+<li><code><a title="app.models.get_notifications" href="#app.models.get_notifications">get_notifications</a></code></li>
+<li><code><a title="app.models.get_user" href="#app.models.get_user">get_user</a></code></li>
+<li><code><a title="app.models.list_users" href="#app.models.list_users">list_users</a></code></li>
+<li><code><a title="app.models.open_account" href="#app.models.open_account">open_account</a></code></li>
+<li><code><a title="app.models.register_user" href="#app.models.register_user">register_user</a></code></li>
+<li><code><a title="app.models.set_account_status" href="#app.models.set_account_status">set_account_status</a></code></li>
+<li><code><a title="app.models.set_user_status" href="#app.models.set_user_status">set_user_status</a></code></li>
+<li><code><a title="app.models.transaction_history" href="#app.models.transaction_history">transaction_history</a></code></li>
+<li><code><a title="app.models.transfer" href="#app.models.transfer">transfer</a></code></li>
+<li><code><a title="app.models.update_profile" href="#app.models.update_profile">update_profile</a></code></li>
+<li><code><a title="app.models.withdraw" href="#app.models.withdraw">withdraw</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="app.models.AuthError" href="#app.models.AuthError">AuthError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="app.models.DomainError" href="#app.models.DomainError">DomainError</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -19,14 +19,22 @@ def generate_password_hash(password):
 # ---------- users ----------
 
 class AuthError(Exception):
-    pass
+    """Raised when authentication fails (bad credentials, blocked user)."""
 
 
 class DomainError(Exception):
-    pass
+    """Raised when a business rule is violated (e.g. insufficient funds)."""
 
 
 def register_user(db, username, email, password, full_name=None, role="customer"):
+    """Create a new user and (for customers) an initial bank account.
+
+    Implements **FR-01 User Registration**.
+
+    :raises DomainError: if the password is too short, the email is
+        malformed, or the username/email is already taken.
+    :returns: the freshly created ``user_id``.
+    """
     if len(password) < 6:
         raise DomainError("Password must be at least 6 characters")
     if "@" not in email:
@@ -51,6 +59,11 @@ def register_user(db, username, email, password, full_name=None, role="customer"
 
 
 def authenticate(db, username, password):
+    """Verify credentials for **FR-02 User Authentication**.
+
+    :raises AuthError: on unknown user, wrong password, or blocked user.
+    :returns: the user row as a ``dict``.
+    """
     row = db.execute("SELECT * FROM users WHERE username=?", (username,)).fetchone()
     if row is None or not check_password_hash(row["password_hash"], password):
         raise AuthError("Invalid credentials")
@@ -65,6 +78,11 @@ def get_user(db, user_id):
 
 
 def update_profile(db, user_id, full_name=None, address=None, phone=None, email=None):
+    """Update mutable fields on a user's profile (**FR-07**).
+
+    Any argument left as ``None`` is ignored, so the same function can
+    be used to patch a single field or several at once.
+    """
     fields, values = [], []
     for col, val in [("full_name", full_name), ("address", address),
                      ("phone", phone), ("email", email)]:
@@ -85,6 +103,7 @@ def _generate_account_number():
 
 
 def open_account(db, user_id, currency="PLN", account_type="checking"):
+    """Open a new zero-balance bank account for ``user_id``."""
     number = _generate_account_number()
     db.execute(
         "INSERT INTO accounts (account_number, user_id, balance, currency, account_type) "
@@ -125,6 +144,14 @@ def _log_tx(db, type_, amount, description, source=None, dest=None,
 
 
 def deposit(db, account_number, amount, description="Deposit"):
+    """Credit ``amount`` to ``account_number`` (**FR-06** deposit path).
+
+    Follows the same *validate → mutate → log → notify → commit*
+    template as :func:`withdraw` and :func:`transfer` (Template Method).
+
+    :raises DomainError: if ``amount`` is non-positive, the account is
+        missing, or the account is not active.
+    """
     if amount <= 0:
         raise DomainError("Amount must be positive")
     acc = get_account(db, account_number)
@@ -142,6 +169,11 @@ def deposit(db, account_number, amount, description="Deposit"):
 
 
 def withdraw(db, account_number, amount, description="Withdraw"):
+    """Debit ``amount`` from ``account_number`` (**FR-06** withdraw path).
+
+    :raises DomainError: on non-positive amount, missing or inactive
+        account, or insufficient funds.
+    """
     if amount <= 0:
         raise DomainError("Amount must be positive")
     acc = get_account(db, account_number)
@@ -161,6 +193,17 @@ def withdraw(db, account_number, amount, description="Withdraw"):
 
 
 def transfer(db, source_number, dest_number, amount, description=""):
+    """Move ``amount`` between two accounts (**FR-05 Money Transfer**).
+
+    Both the debit and the credit happen inside the same SQLite
+    transaction and are committed together; any validation failure
+    aborts before the first UPDATE runs. Two notifications are emitted:
+    one *transfer_out* for the sender and one *transfer_in* for the
+    recipient (Observer pattern).
+
+    :raises DomainError: on non-positive amount, same source/destination,
+        missing account, inactive account, or insufficient funds.
+    """
     if amount <= 0:
         raise DomainError("Amount must be positive")
     if source_number == dest_number:
@@ -190,6 +233,11 @@ def transfer(db, source_number, dest_number, amount, description=""):
 
 
 def transaction_history(db, account_number):
+    """Return all transactions touching ``account_number`` (**FR-04**).
+
+    Sorted newest first, includes rows where the account is either the
+    source or the destination.
+    """
     rows = db.execute(
         "SELECT * FROM transactions "
         "WHERE source_account=? OR dest_account=? "
@@ -202,6 +250,11 @@ def transaction_history(db, account_number):
 # ---------- notifications ----------
 
 def _notify(db, user_id, type_, message):
+    """Publish a notification event for a user (Observer/Pub-Sub).
+
+    Internal helper used by every domain operation — producers do not
+    know which consumers will read the row.
+    """
     db.execute(
         "INSERT INTO notifications (user_id, type, message) VALUES (?, ?, ?)",
         (user_id, type_, message),
@@ -209,6 +262,7 @@ def _notify(db, user_id, type_, message):
 
 
 def get_notifications(db, user_id, limit=20):
+    """Return the most recent notifications for a user (**FR-08**)."""
     rows = db.execute(
         "SELECT * FROM notifications WHERE user_id=? ORDER BY timestamp DESC LIMIT ?",
         (user_id, limit),
@@ -225,6 +279,11 @@ def list_users(db):
 
 
 def set_user_status(db, admin_id, user_id, status):
+    """Admin action: activate or block a user (**FR-10**).
+
+    The new status cascades to all of the user's accounts and the
+    operation is appended to ``audit_log``.
+    """
     if status not in ("active", "blocked"):
         raise DomainError("Invalid status")
     db.execute("UPDATE users SET status=? WHERE user_id=?", (status, user_id))

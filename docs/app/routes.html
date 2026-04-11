@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>app.routes API documentation</title>
+<meta name="description" content="HTTP routes for SmartBank (server-rendered + a small JSON API) …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app.routes</code></h1>
+</header>
+<section id="section-intro">
+<p>HTTP routes for SmartBank (server-rendered + a small JSON API).</p>
+<p>All routes live on a single Flask :class:<code>~flask.Blueprint</code> called
+<code>bank</code>. Route handlers are thin — they call into :mod:<code><a title="app.models" href="models.html">app.models</a></code>
+for every piece of business logic and never issue SQL directly. Two
+view decorators (:func:<code><a title="app.routes.login_required" href="#app.routes.login_required">login_required()</a></code>, :func:<code><a title="app.routes.admin_required" href="#app.routes.admin_required">admin_required()</a></code>)
+implement the authorization layer declaratively.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.routes.account_detail"><code class="name flex">
+<span>def <span class="ident">account_detail</span></span>(<span>account_number)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/account/&lt;account_number&gt;&#34;)
+@login_required
+def account_detail(account_number):
+    db = get_db()
+    acc = m.get_account(db, account_number)
+    if acc is None or acc[&#34;user_id&#34;] != session[&#34;user_id&#34;]:
+        abort(404)
+    history = m.transaction_history(db, account_number)
+    return render_template(&#34;account.html&#34;, account=acc, history=history)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.admin_panel"><code class="name flex">
+<span>def <span class="ident">admin_panel</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/admin&#34;)
+@login_required
+@admin_required
+def admin_panel():
+    db = get_db()
+    users = m.list_users(db)
+    txs = m.all_transactions(db, limit=50)
+    return render_template(&#34;admin.html&#34;, users=users, transactions=txs)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.admin_required"><code class="name flex">
+<span>def <span class="ident">admin_required</span></span>(<span>view)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def admin_required(view):
+    &#34;&#34;&#34;View decorator — ``403 Forbidden`` unless ``session.role == &#39;admin&#39;``.&#34;&#34;&#34;
+    @wraps(view)
+    def wrapped(*a, **kw):
+        if session.get(&#34;role&#34;) != &#34;admin&#34;:
+            abort(403)
+        return view(*a, **kw)
+    return wrapped</code></pre>
+</details>
+<div class="desc"><p>View decorator — <code>403 Forbidden</code> unless <code>session.role == 'admin'</code>.</p></div>
+</dd>
+<dt id="app.routes.admin_set_status"><code class="name flex">
+<span>def <span class="ident">admin_set_status</span></span>(<span>user_id)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/admin/user/&lt;int:user_id&gt;/status&#34;, methods=[&#34;POST&#34;])
+@login_required
+@admin_required
+def admin_set_status(user_id):
+    db = get_db()
+    try:
+        m.set_user_status(db, session[&#34;user_id&#34;], user_id,
+                          request.form[&#34;status&#34;])
+        flash(&#34;User status updated&#34;, &#34;success&#34;)
+    except m.DomainError as e:
+        flash(str(e), &#34;error&#34;)
+    return redirect(url_for(&#34;bank.admin_panel&#34;))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.api_accounts"><code class="name flex">
+<span>def <span class="ident">api_accounts</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/api/accounts&#34;)
+@login_required
+def api_accounts():
+    return jsonify(m.get_accounts(get_db(), session[&#34;user_id&#34;]))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.api_transactions"><code class="name flex">
+<span>def <span class="ident">api_transactions</span></span>(<span>account_number)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/api/transactions/&lt;account_number&gt;&#34;)
+@login_required
+def api_transactions(account_number):
+    db = get_db()
+    acc = m.get_account(db, account_number)
+    if acc is None or acc[&#34;user_id&#34;] != session[&#34;user_id&#34;]:
+        abort(404)
+    return jsonify(m.transaction_history(db, account_number))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.dashboard"><code class="name flex">
+<span>def <span class="ident">dashboard</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/dashboard&#34;)
+@login_required
+def dashboard():
+    db = get_db()
+    user = m.get_user(db, session[&#34;user_id&#34;])
+    accounts = m.get_accounts(db, user[&#34;user_id&#34;])
+    notifications = m.get_notifications(db, user[&#34;user_id&#34;], limit=5)
+    return render_template(&#34;dashboard.html&#34;, user=user, accounts=accounts,
+                           notifications=notifications)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.deposit"><code class="name flex">
+<span>def <span class="ident">deposit</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/deposit&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+@login_required
+def deposit():
+    db = get_db()
+    accounts = m.get_accounts(db, session[&#34;user_id&#34;])
+    if request.method == &#34;POST&#34;:
+        try:
+            m.deposit(db, request.form[&#34;account&#34;], float(request.form[&#34;amount&#34;]),
+                      description=request.form.get(&#34;description&#34;, &#34;Deposit&#34;))
+            flash(&#34;Deposit successful&#34;, &#34;success&#34;)
+            return redirect(url_for(&#34;bank.dashboard&#34;))
+        except (m.DomainError, ValueError) as e:
+            flash(str(e), &#34;error&#34;)
+    return render_template(&#34;deposit.html&#34;, accounts=accounts)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.index"><code class="name flex">
+<span>def <span class="ident">index</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/&#34;)
+def index():
+    if &#34;user_id&#34; in session:
+        return redirect(url_for(&#34;bank.dashboard&#34;))
+    return redirect(url_for(&#34;bank.login&#34;))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.login"><code class="name flex">
+<span>def <span class="ident">login</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/login&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+def login():
+    if request.method == &#34;POST&#34;:
+        try:
+            user = m.authenticate(
+                get_db(),
+                request.form[&#34;username&#34;].strip(),
+                request.form[&#34;password&#34;],
+            )
+            session.clear()
+            session[&#34;user_id&#34;] = user[&#34;user_id&#34;]
+            session[&#34;username&#34;] = user[&#34;username&#34;]
+            session[&#34;role&#34;] = user[&#34;role&#34;]
+            if user[&#34;role&#34;] == &#34;admin&#34;:
+                return redirect(url_for(&#34;bank.admin_panel&#34;))
+            return redirect(url_for(&#34;bank.dashboard&#34;))
+        except m.AuthError as e:
+            flash(str(e), &#34;error&#34;)
+    return render_template(&#34;login.html&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.login_required"><code class="name flex">
+<span>def <span class="ident">login_required</span></span>(<span>view)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login_required(view):
+    &#34;&#34;&#34;View decorator — redirect to ``/login`` if no session is active.&#34;&#34;&#34;
+    @wraps(view)
+    def wrapped(*a, **kw):
+        if &#34;user_id&#34; not in session:
+            return redirect(url_for(&#34;bank.login&#34;))
+        return view(*a, **kw)
+    return wrapped</code></pre>
+</details>
+<div class="desc"><p>View decorator — redirect to <code>/login</code> if no session is active.</p></div>
+</dd>
+<dt id="app.routes.logout"><code class="name flex">
+<span>def <span class="ident">logout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/logout&#34;)
+def logout():
+    session.clear()
+    return redirect(url_for(&#34;bank.login&#34;))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.notifications"><code class="name flex">
+<span>def <span class="ident">notifications</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/notifications&#34;)
+@login_required
+def notifications():
+    db = get_db()
+    items = m.get_notifications(db, session[&#34;user_id&#34;], limit=50)
+    return render_template(&#34;notifications.html&#34;, notifications=items)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.profile"><code class="name flex">
+<span>def <span class="ident">profile</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/profile&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+@login_required
+def profile():
+    db = get_db()
+    if request.method == &#34;POST&#34;:
+        m.update_profile(
+            db, session[&#34;user_id&#34;],
+            full_name=request.form.get(&#34;full_name&#34;) or None,
+            address=request.form.get(&#34;address&#34;) or None,
+            phone=request.form.get(&#34;phone&#34;) or None,
+            email=request.form.get(&#34;email&#34;) or None,
+        )
+        flash(&#34;Profile updated&#34;, &#34;success&#34;)
+        return redirect(url_for(&#34;bank.profile&#34;))
+    user = m.get_user(db, session[&#34;user_id&#34;])
+    return render_template(&#34;profile.html&#34;, user=user)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.register"><code class="name flex">
+<span>def <span class="ident">register</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/register&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+def register():
+    if request.method == &#34;POST&#34;:
+        try:
+            uid = m.register_user(
+                get_db(),
+                request.form[&#34;username&#34;].strip(),
+                request.form[&#34;email&#34;].strip(),
+                request.form[&#34;password&#34;],
+                full_name=request.form.get(&#34;full_name&#34;, &#34;&#34;).strip() or None,
+            )
+            flash(&#34;Account created. Please log in.&#34;, &#34;success&#34;)
+            return redirect(url_for(&#34;bank.login&#34;))
+        except m.DomainError as e:
+            flash(str(e), &#34;error&#34;)
+    return render_template(&#34;register.html&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.transfer"><code class="name flex">
+<span>def <span class="ident">transfer</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/transfer&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+@login_required
+def transfer():
+    db = get_db()
+    accounts = m.get_accounts(db, session[&#34;user_id&#34;])
+    if request.method == &#34;POST&#34;:
+        try:
+            m.transfer(
+                db,
+                request.form[&#34;source&#34;],
+                request.form[&#34;dest&#34;].strip(),
+                float(request.form[&#34;amount&#34;]),
+                description=request.form.get(&#34;description&#34;, &#34;&#34;),
+            )
+            flash(&#34;Transfer completed&#34;, &#34;success&#34;)
+            return redirect(url_for(&#34;bank.dashboard&#34;))
+        except (m.DomainError, ValueError) as e:
+            flash(str(e), &#34;error&#34;)
+    return render_template(&#34;transfer.html&#34;, accounts=accounts)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="app.routes.withdraw"><code class="name flex">
+<span>def <span class="ident">withdraw</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bp.route(&#34;/withdraw&#34;, methods=[&#34;GET&#34;, &#34;POST&#34;])
+@login_required
+def withdraw():
+    db = get_db()
+    accounts = m.get_accounts(db, session[&#34;user_id&#34;])
+    if request.method == &#34;POST&#34;:
+        try:
+            m.withdraw(db, request.form[&#34;account&#34;], float(request.form[&#34;amount&#34;]),
+                       description=request.form.get(&#34;description&#34;, &#34;Withdraw&#34;))
+            flash(&#34;Withdrawal successful&#34;, &#34;success&#34;)
+            return redirect(url_for(&#34;bank.dashboard&#34;))
+        except (m.DomainError, ValueError) as e:
+            flash(str(e), &#34;error&#34;)
+    return render_template(&#34;withdraw.html&#34;, accounts=accounts)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="app" href="index.html">app</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="app.routes.account_detail" href="#app.routes.account_detail">account_detail</a></code></li>
+<li><code><a title="app.routes.admin_panel" href="#app.routes.admin_panel">admin_panel</a></code></li>
+<li><code><a title="app.routes.admin_required" href="#app.routes.admin_required">admin_required</a></code></li>
+<li><code><a title="app.routes.admin_set_status" href="#app.routes.admin_set_status">admin_set_status</a></code></li>
+<li><code><a title="app.routes.api_accounts" href="#app.routes.api_accounts">api_accounts</a></code></li>
+<li><code><a title="app.routes.api_transactions" href="#app.routes.api_transactions">api_transactions</a></code></li>
+<li><code><a title="app.routes.dashboard" href="#app.routes.dashboard">dashboard</a></code></li>
+<li><code><a title="app.routes.deposit" href="#app.routes.deposit">deposit</a></code></li>
+<li><code><a title="app.routes.index" href="#app.routes.index">index</a></code></li>
+<li><code><a title="app.routes.login" href="#app.routes.login">login</a></code></li>
+<li><code><a title="app.routes.login_required" href="#app.routes.login_required">login_required</a></code></li>
+<li><code><a title="app.routes.logout" href="#app.routes.logout">logout</a></code></li>
+<li><code><a title="app.routes.notifications" href="#app.routes.notifications">notifications</a></code></li>
+<li><code><a title="app.routes.profile" href="#app.routes.profile">profile</a></code></li>
+<li><code><a title="app.routes.register" href="#app.routes.register">register</a></code></li>
+<li><code><a title="app.routes.transfer" href="#app.routes.transfer">transfer</a></code></li>
+<li><code><a title="app.routes.withdraw" href="#app.routes.withdraw">withdraw</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

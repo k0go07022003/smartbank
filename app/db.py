@@ -1,4 +1,12 @@
-"""SQLite connection management + schema bootstrap."""
+"""SQLite connection management and schema bootstrap.
+
+Uses Flask's request-scoped :data:`flask.g` object to implement a
+*per-request singleton* connection: :func:`get_db` returns the same
+connection for every call within a single request, and
+:func:`close_db` disposes of it on teardown. Row results come back as
+:class:`sqlite3.Row` so callers can use column names instead of
+positional indexing.
+"""
 import sqlite3
 from flask import g, current_app
 
@@ -58,6 +66,11 @@ CREATE TABLE IF NOT EXISTS audit_log (
 
 
 def get_db():
+    """Return the SQLite connection bound to the current request.
+
+    Lazily opens a new connection and caches it on ``flask.g`` so that
+    subsequent calls within the same request reuse it.
+    """
     if "db" not in g:
         g.db = sqlite3.connect(current_app.config["DATABASE"])
         g.db.row_factory = sqlite3.Row
@@ -66,12 +79,14 @@ def get_db():
 
 
 def close_db(_exc=None):
+    """Teardown hook that closes the request-scoped connection."""
     db = g.pop("db", None)
     if db is not None:
         db.close()
 
 
 def init_db():
+    """Create all tables if they do not exist yet."""
     db = get_db()
     db.executescript(SCHEMA)
     db.commit()

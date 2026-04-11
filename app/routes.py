@@ -1,4 +1,11 @@
-"""HTTP routes for SmartBank (server-rendered + a small JSON API)."""
+"""HTTP routes for SmartBank (server-rendered + a small JSON API).
+
+All routes live on a single Flask :class:`~flask.Blueprint` called
+``bank``. Route handlers are thin — they call into :mod:`app.models`
+for every piece of business logic and never issue SQL directly. Two
+view decorators (:func:`login_required`, :func:`admin_required`)
+implement the authorization layer declaratively.
+"""
 from functools import wraps
 from flask import (Blueprint, render_template, request, redirect, url_for,
                    session, flash, jsonify, abort)
@@ -11,6 +18,7 @@ bp = Blueprint("bank", __name__)
 # ---------- auth helpers ----------
 
 def login_required(view):
+    """View decorator — redirect to ``/login`` if no session is active."""
     @wraps(view)
     def wrapped(*a, **kw):
         if "user_id" not in session:
@@ -20,6 +28,7 @@ def login_required(view):
 
 
 def admin_required(view):
+    """View decorator — ``403 Forbidden`` unless ``session.role == 'admin'``."""
     @wraps(view)
     def wrapped(*a, **kw):
         if session.get("role") != "admin":
