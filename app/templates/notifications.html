@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Notifications</h2>
+  {% if notifications %}
+    <table>
+      <tr><th>When</th><th>Type</th><th>Message</th></tr>
+      {% for n in notifications %}
+      <tr><td class="muted">{{ n.timestamp }}</td><td>{{ n.type }}</td><td>{{ n.message }}</td></tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="muted">No notifications.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Transfer funds</h2>
+  <form method="post">
+    <label>From account
+      <select name="source" required>
+        {% for a in accounts %}
+          <option value="{{ a.account_number }}">{{ a.account_number }} ({{ "%.2f"|format(a.balance) }} {{ a.currency }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Recipient account number<input name="dest" required placeholder="PL..."></label>
+    <label>Amount<input type="number" step="0.01" min="0.01" name="amount" required></label>
+    <label>Reference<input name="description" placeholder="Optional"></label>
+    <button type="submit">Send</button>
+  </form>
+</div>
+{% endblock %}

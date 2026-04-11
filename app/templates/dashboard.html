@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ user.full_name or user.username }}</h2>
+
+<div class="grid">
+  {% for acc in accounts %}
+    <div class="card">
+      <div class="muted">{{ acc.account_type|title }} · {{ acc.status }}</div>
+      <div class="acc-num">{{ acc.account_number }}</div>
+      <div class="balance">{{ "%.2f"|format(acc.balance) }} {{ acc.currency }}</div>
+      <a class="btn" href="{{ url_for('bank.account_detail', account_number=acc.account_number) }}">History</a>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <h2>Recent notifications</h2>
+  {% if notifications %}
+    <table>
+      <tr><th>When</th><th>Message</th></tr>
+      {% for n in notifications %}
+      <tr><td class="muted">{{ n.timestamp }}</td><td>{{ n.message }}</td></tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="muted">No notifications yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

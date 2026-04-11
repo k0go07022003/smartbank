@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Profile</h2>
+  <form method="post">
+    <label>Username<input value="{{ user.username }}" disabled></label>
+    <label>Full name<input name="full_name" value="{{ user.full_name or '' }}"></label>
+    <label>Email<input type="email" name="email" value="{{ user.email }}"></label>
+    <label>Phone<input name="phone" value="{{ user.phone or '' }}"></label>
+    <label>Address<input name="address" value="{{ user.address or '' }}"></label>
+    <button type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

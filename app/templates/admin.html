@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Users</h2>
+  <table>
+    <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Status</th><th></th></tr>
+    {% for u in users %}
+    <tr>
+      <td>{{ u.user_id }}</td>
+      <td>{{ u.username }}</td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.role }}</td>
+      <td>{{ u.status }}</td>
+      <td>
+        {% if u.role != 'admin' %}
+        <form method="post" action="{{ url_for('bank.admin_set_status', user_id=u.user_id) }}" style="display:inline">
+          {% if u.status == 'active' %}
+            <input type="hidden" name="status" value="blocked">
+            <button class="btn-danger" type="submit">Block</button>
+          {% else %}
+            <input type="hidden" name="status" value="active">
+            <button type="submit">Unblock</button>
+          {% endif %}
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="card">
+  <h2>Recent transactions</h2>
+  <table>
+    <tr><th>Date</th><th>Type</th><th>Amount</th><th>From</th><th>To</th></tr>
+    {% for t in transactions %}
+    <tr>
+      <td class="muted">{{ t.date }}</td>
+      <td>{{ t.type }}</td>
+      <td>{{ "%.2f"|format(t.amount) }}</td>
+      <td class="acc-num">{{ t.source_account or '-' }}</td>
+      <td class="acc-num">{{ t.dest_account or '-' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

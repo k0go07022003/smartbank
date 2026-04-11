@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Deposit funds</h2>
+  <form method="post">
+    <label>Account
+      <select name="account" required>
+        {% for a in accounts %}
+          <option value="{{ a.account_number }}">{{ a.account_number }} ({{ "%.2f"|format(a.balance) }} {{ a.currency }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Amount<input type="number" step="0.01" min="0.01" name="amount" required></label>
+    <label>Description<input name="description" placeholder="Optional"></label>
+    <button type="submit">Deposit</button>
+  </form>
+</div>
+{% endblock %}

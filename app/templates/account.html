@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Account details</h2>
+  <div class="acc-num">{{ account.account_number }}</div>
+  <div class="balance">{{ "%.2f"|format(account.balance) }} {{ account.currency }}</div>
+  <p class="muted">Status: {{ account.status }} · Type: {{ account.account_type }}</p>
+</div>
+
+<div class="card">
+  <h2>Transaction history</h2>
+  {% if history %}
+    <table>
+      <tr><th>Date</th><th>Type</th><th>Amount</th><th>From</th><th>To</th><th>Description</th></tr>
+      {% for t in history %}
+      <tr>
+        <td class="muted">{{ t.date }}</td>
+        <td>{{ t.type }}</td>
+        <td>{{ "%.2f"|format(t.amount) }}</td>
+        <td class="acc-num">{{ t.source_account or '-' }}</td>
+        <td class="acc-num">{{ t.dest_account or '-' }}</td>
+        <td>{{ t.description }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="muted">No transactions yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
