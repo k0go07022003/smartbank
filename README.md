@@ -1,3 +1,5 @@
+> **Wersja na zaliczenie PHP / MariaDB:** [SmartBank Laravel](laravel/README.md) — instrukcja uruchomienia, wymagania i [przygotowanie do obrony](laravel/OBRONA.md). Poniżej zachowano dokumentację starszej wersji Flask.
+
 # SmartBank — Bank Account Management System
 
 Academic project for **Software Engineering** course (Inżynieria Oprogramowania).

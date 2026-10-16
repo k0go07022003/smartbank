@@ -1,0 +1,4 @@
+<label for="name">Imię i nazwisko</label><input id="name" name="name" value="{{ old('name',$user?->name) }}" required minlength="3" maxlength="100" autocomplete="name">
+<label for="email">Adres e-mail</label><input id="email" name="email" type="email" value="{{ old('email',$user?->email) }}" required maxlength="180" autocomplete="email">
+<label for="password">Hasło {{ $user?->exists ? '(pozostaw puste, aby zachować)' : '' }}</label><input id="password" name="password" type="password" minlength="10" maxlength="72" @required(!$user?->exists) autocomplete="new-password" aria-describedby="password-hint"><small id="password-hint">Minimum 10 znaków, w tym litera i cyfra.</small>
+<label for="password_confirmation">Powtórz hasło</label><input id="password_confirmation" name="password_confirmation" type="password" @required(!$user?->exists) autocomplete="new-password">
